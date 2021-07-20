@@ -6,21 +6,21 @@ const fs = require("fs");
 const indexFile = fs.readFileSync("./index.html", "utf-8");
 
 const replaceVal = (originalValue, apiValue) => {
-  let temperature = originalValue.replace("{%city%}", apiValue.name);
-  temperature = temperature.replace("{%visibility%}", apiValue.visibility);
-  temperature = temperature.replace("{%temp%}", apiValue.main.temp);
-  temperature = temperature.replace("{%tempstatus%}", apiValue.weather[0].main);
-  temperature = temperature.replace("{%country%}", apiValue.sys.country);
-  temperature = temperature.replace("{%wind_speed%}", apiValue.wind.speed);
-  temperature = temperature.replace("{%tempMin%}", apiValue.main.temp_min);
-  temperature = temperature.replace("{%tempMax%}", apiValue.main.temp_max);
-  temperature = temperature.replace("{%pressure%}", apiValue.main.pressure);
-  temperature = temperature.replace("{%humidity%}", apiValue.main.humidity);
-  temperature = temperature.replace("{%feels_like%}", apiValue.main.feels_like);
-  temperature = temperature.replace("{%description%}", apiValue.weather[0].main
+  let temp = originalValue.replace("{%city%}", apiValue.name);
+  temp = temp.replace("{%visibility%}", apiValue.visibility);
+  temp = temp.replace("{%temp%}", apiValue.main.temp);
+  temp = temp.replace("{%tempstatus%}", apiValue.weather[0].main);
+  temp = temp.replace("{%country%}", apiValue.sys.country);
+  temp = temp.replace("{%wind_speed%}", apiValue.wind.speed);
+  temp = temp.replace("{%tempMin%}", apiValue.main.temp_min);
+  temp = temp.replace("{%tempMax%}", apiValue.main.temp_max);
+  temp = temp.replace("{%pressure%}", apiValue.main.pressure);
+  temp = temp.replace("{%humidity%}", apiValue.main.humidity);
+  temp = temp.replace("{%feels_like%}", apiValue.main.feels_like);
+  temp = temp.replace("{%description%}", apiValue.weather[0].main
   );
 
-  return temperature;
+  return temp;
 };
 
 const server = http.createServer((req, res) => {
@@ -47,6 +47,6 @@ const server = http.createServer((req, res) => {
 });
 
 PORT = `${process.env.PORT}` || 8000;
-server.listen(PORT, "127.0.0.1", () => {
+server.listen(PORT, () => {
   console.log("Listening on port", PORT);
 });

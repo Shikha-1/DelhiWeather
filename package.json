@@ -1,0 +1,17 @@
+{
+  "name": "delhiweather",
+  "version": "1.0.0",
+  "description": "THIS APP SHOWS WEATHER AND WEATHER DESCRIPTION OF DELHI",
+  "main": "app.js",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "requests": "^0.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node app.js"
+  },
+  "author": "SHIKHA",
+  "license": "ISC"
+}
