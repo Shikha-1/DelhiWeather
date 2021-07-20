@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Delhi-Weather</title>
+     <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+        integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ=="
+        crossorigin="anonymous"
+    />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap"
+        rel="stylesheet"
+    />
+    <style>
+        * {
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+            font-family: "Quicksand", sans-serif;
+            font-weight: bold;
+            font-size: 2rem;
+        }
+        body {
+            text-decoration: none;
+            color: whitesmoke;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            text-align: center;
+            background: linear-gradient(rgb(64, 182, 197), rgb(38, 52, 131));
+            height: 100vh;
+            width: 100wh;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+        .location {
+            margin-top: 4vh;
+        }
+        .temperature {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 3vh 0;
+            justify-content: space-evenly;
+        }
+        .txt {
+            margin: 2vh;
+            font-size: x-large;
+        }
+        #weatherIcon .fas {
+            font-size: 4rem;
+            margin: 1rem;
+            animation: fas-anime 3s linear infinite alternate;
+        }
+        @keyframes fas-anime {
+            from {
+                transform: scale(1.1);
+            }
+            to {
+                transform: scale(1.5);
+            }
+        }
+        .fa-street-view {
+            margin: 0 2vw;
+            animation: rotates 3s linear infinite alternate;
+        }
+        @keyframes rotates {
+            from {
+                transform: translateX(-0.5rem);
+            }
+            to {
+                transform: translateX(0.5rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div class="location">
+        <i class="fas fa-street-view" style="color: #fff"></i>{%city%}, {%country%}
+        <div class='txt' id="dateTime">SAT | JUL 3 | 9.00 PM</div>
+        <div id="weatherIcon">
+            <i class="fas fa-sun" style="color: #eccc68"></i>
+        </div>
+      </div>
+    <div class="temperature">
+        <div id="temperature">
+          <div>{%temp%} &#176C</div>
+          <div class='txt'>Min {%tempMin%} &#176C | Max {%tempMax%} &#176C</div>
+        </div>
+        <div id="discription">{%description%}</div>
+    </div>
+    <div class="description">
+        <div class='txt'>Humidity: {%humidity%} %</div>
+        <div class='txt'>Visibility: {%visibility%} km</div>
+        <div class="txt">Air Pressure: {%pressure%} hPa</div>
+        <div class='txt'>Wind Speed: {%wind_speed%} km/h</div>
+    </div>
+
+
+    <script>
+        // FORMAT DATE - TIME - DAY
+        const monthsNames = [
+            "JAN",
+            "FEB",
+            "MAR",
+            "APR",
+            "MAY",
+            "JUN",
+            "JUL",
+            "AUG",
+            "SEP",
+            "OCT",
+            "NOV",
+            "DEC"
+        ]
+        const days = [
+            "SUN",
+            "MON",
+            "TUES",
+            "WED",
+            "THU",
+            "FRI",
+            "SAT"
+        ]
+        let date = new Date();
+        let hour = date.getHours();
+        let min = date.getMinutes();
+        let sundial = hour > 12 ? "PM" : "AM";
+        hour = hour <= 12 ? hour : hour - 12
+        const time = `${hour < 10 ? `0${hour}` : hour}:${min < 10 ? `0${min}` : min}`;
+        document.getElementById("dateTime").innerHTML = `${days[date.getDay()]} | ${monthsNames[date.getMonth()]} ${date.getDate()} | ${time} ${sundial}`;
+        
+        //ICONS
+        let icon = document.getElementById("weatherImg")
+        const tempStatus = "{%tempstatus%}";
+        if (tempStatus == "Sunny") {
+            weatherIcon.innerHTML =
+            "<i class='fas  fa-sun' style='color: #eccc68;'></i>";
+        } else if (tempStatus == "Clouds") {
+            weatherIcon.innerHTML =
+            "<i class='fas  fa-cloud' style='color: #f1f2f6;'></i>";
+        } else if (tempStatus == "Rainy") {
+            weatherIcon.innerHTML =
+            "<i class='fas  fa-cloud-rain' style='color: #a4b0be;'></i>";
+        } else {
+            weatherIcon.innerHTML =
+            "<i class='fas  fa-cloud' style='color:#f1f2f6;'></i>";
+        }
+            
+    </script>  
+</body>
+</html>
